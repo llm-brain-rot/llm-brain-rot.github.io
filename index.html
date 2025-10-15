@@ -205,6 +205,89 @@
 
 
 
+<section class="section">
+  <div class="container is-max-desktop">
+    <div class="container">
+      <h2 class="title is-3">Main Results: Junk Intervention and Cognitive Declines Are Associated</h2>
+
+      <p>We leverage existing benchmarks to examine the multifaceted ``cognitive functions'' of LLMs. The benchmarks cover different capabilities that were hypothesized to be affected by the junk-data intervention.</p>
+
+      <!-- <img src="./static/images/methods.png" alt="methods"> -->
+
+      <table class="table is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th>Cognitive Func.</th>
+            <th>Benchmark</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Reasoning</td>
+            <td>ARC</td>
+            <td>Visual program-induction puzzles on grids testing concept abstraction.</td>
+          </tr>
+          <tr>
+            <td>Memory &amp; Multi-tasking</td>
+            <td>RULER</td>
+            <td>Benchmark the long-context understanding and retrieval of multiple queries from long context.</td>
+          </tr>
+          <tr>
+            <td>Ethical Norms</td>
+            <td>HH-RLHF &amp; AdvBench</td>
+            <td>Testing if LLMs follow harmful instructions.</td>
+          </tr>
+          <tr>
+            <td>Personality</td>
+            <td>TRAIT</td>
+            <td>Psychometrically validated small human questionnaires to assess personality-like tendencies.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <img src="./static/images/effective_size.png" alt="barplot_quant_LLAMA2_13b_Chat">
+
+      <p>
+        <strong>Junk Intervention Effectively Results in Cognitive Decline.</strong>
+        We analyze intervention effects by comparing benchmark differences after feeding junk/control data to four LLMs.
+        Effect size is computed via Hedges' g across the four models (adjusted for the small group size n=4), which characterizes the standardized difference between intervention and control and is standardized over the variance caused by model choices.
+        A larger effect size implies a stronger impact of the junk intervention relative to the control condition on changing LLM behavior.
+        Note that effect size does not necessarily imply a simple relative difference to the baseline model—for example, the control group may outperform the baseline while the intervention group underperforms it.<br><br>
+
+        Effective sizes on different cognitive functions are shown in the figure "Effective Size".
+        Both M1 and M2 produce non-trivial effects (Hedges' g &gt; 0.3) on reasoning and long-context capabilities.
+        However, the junk content operationalized by engagement degree (M1) damages functional cognition (reasoning and long-context) and safety more strongly.
+        Across the remaining benchmarks the two interventions diverge: M1 causes more negative effects than M2.
+        Specifically, M1 increases safety risks and elevates two negative personality traits (narcissism and psychopathy) while lowering agreeableness.
+        By contrast, M2 can produce positive shifts in agreeableness, extraversion, and openness.
+        The marked divergence between M1 and M2 implies that engagement degree (M1) is not a proxy for semantic quality (M2) but represents a distinct dimension of data quality.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<section class="section hero is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Conclusion</h2>
+        <div class="content has-text-justified">
+          <p>
+            In this work, we introduced and empirically validated the <strong>LLM Brain Rot Hypothesis</strong>, demonstrating that continual exposure to junk data—defined as engaging (fragmentary and popular) or semantically low-quality (sensationalist) content—induces systematic cognitive decline in large language models. The decline includes worse reasoning, poorer long-context understanding, diminished ethical norms, and emergent socially undesirable personalities.
+          </p>
+          <p>
+            Fine-grained analysis shows that the damage is multifaceted in changing the reasoning patterns and is persistent against large-scale post-hoc tuning. These results call for a re-examination of current data collection from the Internet and continual pre-training practices. As LLMs scale and ingest ever-larger corpora of web data, careful curation and quality control will be essential to prevent cumulative harms.
+          </p>
+          <p>
+            Limited by the scope of the paper, we leave it as an open question how popular tweets or other junk data change the learning mechanism, resulting in cognitive declines. Answering this question is essential for building stronger defense methods in the future.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Paper poster -->
   <!-- <section class="hero is-small is-light">
