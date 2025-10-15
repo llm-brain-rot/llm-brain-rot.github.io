@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <!-- Meta tags for social media banners, these should be filled in appropriatly as they are your "business card" -->
+  <!-- Replace the content tag with appropriate information -->
+  <meta name="description" content="Decoding Compressed Trust: Scrutinizing the Trustworthiness of Efficient LLMs Under Compression">
+  <meta property="og:title" content="Decoding Compressed Trust" />
+  <meta property="og:description" content="Decoding Compressed Trust" />
+  <meta property="og:url" content="https://decoding-comp-trust.github.io/" />
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X630-->
+  <!-- <meta property="og:image" content="static/image/your_banner_image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" /> -->
+
+
+  <meta name="twitter:title" content="TWITTER BANNER TITLE META TAG">
+  <meta name="twitter:description" content="TWITTER BANNER DESCRIPTION META TAG">
+  <!-- Path to banner image, should be in the path listed below. Optimal dimenssions are 1200X600-->
+  <meta name="twitter:image" content="static/images/your_twitter_banner_image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keywords for your paper to be indexed by-->
+  <meta name="keywords" content="LLM, compression, efficiency, AI, GenAI, trustworthiness, safety, security, decoding, benchmark, assessment">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <title>LLMs Can Get "Brain Rot"!</title>
+  <!-- <link rel="icon" type="image/x-icon" href="static/images/favicon.ico"> -->
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+  <link rel="stylesheet" href="static/css/leaderboard.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script src="static/js/bulma-carousel.min.js"></script>
+  <script src="static/js/bulma-slider.min.js"></script>
+  <script src="static/js/index.js"></script>
+
+  <!-- for dyn table -->
+  <script type="text/javascript" src="static/js/sort-table.js" defer></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+    integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css"> -->
+  <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script> -->
+
+  <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/2.0.2/js/dataTables.min.js"></script> -->
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.dataTables.css" />
+  <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
+  <!-- END dyn table -->
+</head>
+
+<body>
+
+
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-2 publication-title">LLMs Can Get "Brain Rot"!</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                Shuo Xing<sup>†1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://jyhong.gitlab.io">Junyuan Hong</a><sup>†*2</sup>,
+              </span>
+              <span class="author-block">
+                Yifan Wang<sup>‡3</sup>,
+              </span>
+              <span class="author-block">
+                Runjin Chen<sup>‡2</sup>,
+              </span>
+              <span class="author-block">
+                Zhenyu Zhang<sup>2</sup>,
+              </span>
+              <span class="author-block">
+                Ananth Grama<sup>3</sup>,
+              </span>
+              <span class="author-block">
+                Zhengzhong Tu<sup>1</sup>,
+              </span>
+              <span class="author-block">
+                <a href="https://vita-group.github.io/">Zhangyang Wang</a><sup>2</sup>
+              </span>
+            </div>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Texas A&amp;M University,</span>
+              <span class="author-block"><sup>2</sup>University of Texas at Austin,</span>
+              <span class="author-block"><sup>3</sup>Purdue University</span>
+              <br>
+              <span class="eql-cntrb"><small><br><sup>†</sup>Lead authors with equal contributions. <sup>‡</sup>Core contributors.</small></span>
+              <br>
+              <small>Correspondence to <a href="mailto:jyhong@utexas.edu">jyhong@utexas.edu</a>, <a href="mailto:atlaswang@utexas.edu">atlaswang@utexas.edu</a>.</small>
+            </div>
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                    </span>
+                    <span>Paper</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href=""
+                      class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-github"></i>
+                    </span>
+                    <span>Code</span>
+                  </a>
+                </span>
+                <span class="link-block">
+                  <a href="" class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🤗
+                    </span>
+                    <span>Model</span>
+                  </a>
+                </span>
+                <!-- <span class="link-block">
+                  <a href="https://huggingface.co/spaces/AI-Secure/llm-trustworthy-leaderboard"
+                    class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                      🏅
+                    </span>
+                    <span>Leaderboard</span>
+                  </a>
+                </span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Teaser video-->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <!-- <video id="teaser" autoplay muted playsinline height="100%">
+          <source src="./static/videos/teaser.mp4" type="video/mp4">
+        </video> -->
+        <img src="./static/images/teaser.png" alt="Teaser Image" style="display: block; margin: 0 auto; max-width: 100%;">
+        <h2 class="subtitle has-text-centered">
+          Outline of our work: (i) Inspired by the concept of Brain Rot, we establish the hypothesis of LLM Brain Rot; (ii) We
+          construct junk and control data from Twitter/X posts for intervention; (iii)~We benchmark four different cognitive
+          functions of the intervened LLMs;
+          (iv) We analyze the results to identify the failure modes caused by the brain rot; and (v) Brain rot is persistent after
+          various mitigation.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser video -->
+
+  <!-- Paper abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Overview</h2>
+          <div class="content has-text-justified">
+            <p>
+              We propose and test the <b>LLM Brain Rot Hypothesis</b>: continual exposure to <i>junk web text</i> induces lasting cognitive decline in large language models (LLMs). To causally isolate data quality, we run controlled experiments on real Twitter/X corpora, constructing junk and reversely controlled datasets via two orthogonal operationalizations: <b>M1</b> (engagement degree) and <b>M2</b> (semantic quality), with matched token scale and training operations across conditions.
+            </p>
+            <p>
+              Contrary to the control group, continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' <i>g&gt;0.3</i>) on reasoning, long-context understanding, safety, and inflating "dark traits" (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain Of Thoughts drops <b>74.9 → 57.2</b> and RULER-CWE <b>84.4 → 52.3</b> as junk ratio rises from <b>0%</b> to <b>100%</b>.
+            </p>
+            <p>
+              Error forensics reveal several key insights:
+              <ul>
+              <li><span class="fontGrad-bg">Thought-skipping as the primary lesion:</span> models increasingly truncate or skip reasoning chains, explaining most of the error growth.</li>
+              <li><span class="fontGrad-bg">Partial but incomplete healing:</span> scaling instruction tuning and clean data pre-training improve the declined cognition yet cannot restore baseline capability, suggesting persistent representational drift rather than format mismatch.</li>
+              <li><span class="fontGrad-bg">Popularity as a better indicator:</span> the popularity, a non-semantic metric, of a tweet is a better indicator of the Brain Rot effect than the length in M1.</li>
+              </ul>
+            </p>
+            <p>
+              Together, the results provide significant, multi-perspective evidence that <i>data quality is a causal driver of LLM capability decay</i>, reframing curation for continual pretraining as a <i>training-time safety</i> problem and motivating routine "cognitive health checks" for deployed LLMs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End paper abstract -->
+
+
+
+
+
+  <!-- Paper poster -->
+  <!-- <section class="hero is-small is-light">
+    <div class="hero-body">
+      <div class="container">
+        <h2 class="title">Poster</h2>
+
+        <iframe src="static/pdfs/sample.pdf" width="100%" height="550">
+        </iframe>
+
+      </div>
+    </div>
+  </section> -->
+  <!--End paper poster -->
+
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@article{xing2024brainrot,
+        title={LLMs Can Get "Brain Rot"!},
+        author={Xing, Shuo and Hong, Junyuan and Wang, Yifan and Chen, Runjin and Zhang, Zhenyu and Grama, Ananth and Tu, Zhengzhong and Wang, Zhangyang},
+        journal={arXiv:TBA},
+        year={2024},
+    }</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                target="_blank">Academic Project Page Template</a> and <a
+                href="https://boyiwei.com/alignment-attribution/#motivation" target="_blank">alignment-attribution</a> project.
+              <br> This website is licensed under a <a rel="license"
+                href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Statcounter tracking code -->
+
+  <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+  <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
