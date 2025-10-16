@@ -182,7 +182,7 @@
               We propose and test the <b>LLM Brain Rot Hypothesis</b>: continual exposure to <i>junk web text</i> induces lasting cognitive decline in large language models (LLMs). To causally isolate data quality, we run controlled experiments on real Twitter/X corpora, constructing junk and reversely controlled datasets via two orthogonal operationalizations: <b>M1</b> (engagement degree) and <b>M2</b> (semantic quality), with matched token scale and training operations across conditions.
             </p>
             <p>
-              Contrary to the control group, continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' <i>g&gt;0.3</i>) on reasoning, long-context understanding, safety, and inflating "dark traits" (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain Of Thoughts drops <b>74.9 → 57.2</b> and RULER-CWE <b>84.4 → 52.3</b> as junk ratio rises from <b>0%</b> to <b>100%</b>.
+              Contrary to the control group, <span class="fontGrad-bg">continual pre-training of 4 LLMs on the junk dataset causes non-trivial declines (Hedges' <i>g&gt;0.3</i>)</span> on reasoning, long-context understanding, safety, and inflating "dark traits" (e.g., psychopathy, narcissism). The gradual mixtures of junk and control datasets also yield dose-response cognition decay: for example, under M1, ARC-Challenge with Chain Of Thoughts drops <b>74.9 → 57.2</b> and RULER-CWE <b>84.4 → 52.3</b> as junk ratio rises from <b>0%</b> to <b>100%</b>.
             </p>
             <p>
               Error forensics reveal several key insights:
@@ -263,8 +263,523 @@
         By contrast, M2 can produce positive shifts in agreeableness, extraversion, and openness.
         The marked divergence between M1 and M2 implies that engagement degree (M1) is not a proxy for semantic quality (M2) but represents a distinct dimension of data quality.
       </p>
+
+      <p>
+      <div class="table-wrap">
+        <div class="caption">
+          <strong>Table: Evaluating LLaMA (Base)</strong> after being trained on varying mixtures of junk and control data.
+          Colors indicate the <span class="swatch" style="background-color: rgba(225,65,105,0.80);"></span> worse /
+          <span class="swatch" style="background-color: rgba(65,105,225,0.60);"></span> better performance than the base model
+          in the row.
+          All scores range from 0 to 100. For RULER, we select a subset of tasks to present; the full results are in
+          Table&nbsp;S?.
+          Abbrev.: NIAH = needle-in-a-haystack, QA = question answering.
+        </div>
+      
+        <table class="compact striped">
+          <thead>
+            <tr>
+              <th rowspan="2">Task</th>
+              <th colspan="5">Junk Ratio by M1 (engagement degree)</th>
+              <th colspan="5">Junk Ratio by M2 (semantic quality)</th>
+              <th rowspan="2">Base</th>
+            </tr>
+            <tr>
+              <th>100%</th>
+              <th>80%</th>
+              <th>50%</th>
+              <th>20%</th>
+              <th>0%</th>
+              <th>100%</th>
+              <th>80%</th>
+              <th>50%</th>
+              <th>20%</th>
+              <th>0%</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Section: Reasoning (ARC) -->
+            <tr class="section">
+              <td></td>
+              <td colspan="10"><strong>Reasoning (ARC)</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Easy Acc.</td>
+              <td style="background-color: rgba(225,65,105,0.90);">70.2</td>
+              <td style="background-color: rgba(225,65,105,0.52);">73.3</td>
+              <td style="background-color: rgba(225,65,105,0.41);">74.3</td>
+              <td style="background-color: rgba(225,65,105,0.09);">76.9</td>
+              <td style="background-color: rgba(65,105,225,0.13);">78.7</td>
+              <td style="background-color: rgba(225,65,105,0.40);">74.3</td>
+              <td style="background-color: rgba(65,105,225,0.02);">77.8</td>
+              <td style="background-color: rgba(65,105,225,0.07);">78.2</td>
+              <td style="background-color: rgba(225,65,105,0.02);">77.5</td>
+              <td style="background-color: rgba(65,105,225,0.09);">78.4</td>
+              <td>77.7</td>
+            </tr>
+            <tr>
+              <td>Challenge Acc.</td>
+              <td style="background-color: rgba(225,65,105,0.90);">41.6</td>
+              <td style="background-color: rgba(225,65,105,0.56);">43.9</td>
+              <td style="background-color: rgba(225,65,105,0.43);">44.7</td>
+              <td style="background-color: rgba(225,65,105,0.16);">46.5</td>
+              <td style="background-color: rgba(65,105,225,0.04);">47.8</td>
+              <td style="background-color: rgba(225,65,105,0.76);">42.6</td>
+              <td style="background-color: rgba(65,105,225,0.05);">47.9</td>
+              <td style="background-color: rgba(65,105,225,0.03);">47.7</td>
+              <td style="background-color: rgba(225,65,105,0.01);">47.4</td>
+              <td style="background-color: rgba(225,65,105,0.03);">47.4</td>
+              <td>47.5</td>
+            </tr>
+            <tr>
+              <td>Challenge (COT) Acc.</td>
+              <td style="background-color: rgba(225,65,105,0.90);">57.2</td>
+              <td style="background-color: rgba(225,65,105,0.45);">67.2</td>
+              <td style="background-color: rgba(225,65,105,0.41);">68.2</td>
+              <td style="background-color: rgba(225,65,105,0.17);">73.4</td>
+              <td style="background-color: rgba(225,65,105,0.10);">74.9</td>
+              <td style="background-color: rgba(225,65,105,0.43);">67.7</td>
+              <td style="background-color: rgba(65,105,225,0.02);">77.6</td>
+              <td>77.3</td>
+              <td style="background-color: rgba(65,105,225,0.02);">77.6</td>
+              <td style="background-color: rgba(225,65,105,0.03);">76.6</td>
+              <td>77.2</td>
+            </tr>
+      
+            <!-- Section: Long-Context (RULER) -->
+            <tr class="section">
+              <td></td>
+              <td colspan="10"><strong>Long-Context (RULER)</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Overall</td>
+              <td style="background-color: rgba(225,65,105,0.90);">71</td>
+              <td style="background-color: rgba(225,65,105,0.48);">81.6</td>
+              <td style="background-color: rgba(225,65,105,0.31);">86.1</td>
+              <td style="background-color: rgba(225,65,105,0.21);">88.5</td>
+              <td style="background-color: rgba(225,65,105,0.14);">90.5</td>
+              <td style="background-color: rgba(225,65,105,0.30);">86.2</td>
+              <td style="background-color: rgba(225,65,105,0.04);">92.9</td>
+              <td style="background-color: rgba(225,65,105,0.04);">93</td>
+              <td style="background-color: rgba(225,65,105,0.02);">93.4</td>
+              <td>93.8</td>
+              <td>93.9</td>
+            </tr>
+            <tr>
+              <td>NIAH-MK3</td>
+              <td style="background-color: rgba(225,65,105,0.90);">35.6</td>
+              <td style="background-color: rgba(225,65,105,0.27);">80.8</td>
+              <td style="background-color: rgba(225,65,105,0.15);">89.4</td>
+              <td style="background-color: rgba(225,65,105,0.10);">92.6</td>
+              <td style="background-color: rgba(225,65,105,0.06);">95.6</td>
+              <td style="background-color: rgba(225,65,105,0.04);">96.8</td>
+              <td style="background-color: rgba(225,65,105,0.04);">97.2</td>
+              <td style="background-color: rgba(225,65,105,0.02);">98.8</td>
+              <td style="background-color: rgba(225,65,105,0.01);">99.2</td>
+              <td style="background-color: rgba(225,65,105,0.01);">99.4</td>
+              <td>100</td>
+            </tr>
+            <tr>
+              <td>NIAH-MQ</td>
+              <td style="background-color: rgba(225,65,105,0.42);">97.2</td>
+              <td style="background-color: rgba(225,65,105,0.69);">95.3</td>
+              <td style="background-color: rgba(225,65,105,0.53);">96.4</td>
+              <td style="background-color: rgba(225,65,105,0.11);">99.2</td>
+              <td style="background-color: rgba(65,105,225,0.01);">99.9</td>
+              <td style="background-color: rgba(225,65,105,0.90);">94</td>
+              <td style="background-color: rgba(225,65,105,0.10);">99.2</td>
+              <td style="background-color: rgba(225,65,105,0.02);">99.8</td>
+              <td style="background-color: rgba(225,65,105,0.05);">99.5</td>
+              <td style="background-color: rgba(225,65,105,0.02);">99.7</td>
+              <td>99.9</td>
+            </tr>
+            <tr>
+              <td>NIAH-MV</td>
+              <td style="background-color: rgba(225,65,105,0.56);">77.8</td>
+              <td style="background-color: rgba(225,65,105,0.90);">65.9</td>
+              <td style="background-color: rgba(225,65,105,0.51);">79.5</td>
+              <td style="background-color: rgba(225,65,105,0.39);">83.9</td>
+              <td style="background-color: rgba(225,65,105,0.41);">83.2</td>
+              <td style="background-color: rgba(225,65,105,0.82);">68.6</td>
+              <td style="background-color: rgba(225,65,105,0.31);">87</td>
+              <td style="background-color: rgba(225,65,105,0.28);">87.8</td>
+              <td style="background-color: rgba(225,65,105,0.23);">89.8</td>
+              <td style="background-color: rgba(225,65,105,0.09);">94.5</td>
+              <td>97.8</td>
+            </tr>
+            <tr>
+              <td>Comm Word Ext (CWE)</td>
+              <td style="background-color: rgba(225,65,105,0.90);">52.3</td>
+              <td style="background-color: rgba(225,65,105,0.65);">63.2</td>
+              <td style="background-color: rgba(225,65,105,0.63);">64.1</td>
+              <td style="background-color: rgba(225,65,105,0.23);">81.6</td>
+              <td style="background-color: rgba(225,65,105,0.17);">84.4</td>
+              <td style="background-color: rgba(225,65,105,0.54);">68.2</td>
+              <td style="background-color: rgba(65,105,225,0.07);">94.7</td>
+              <td style="background-color: rgba(65,105,225,0.13);">97.3</td>
+              <td style="background-color: rgba(65,105,225,0.10);">96</td>
+              <td style="background-color: rgba(65,105,225,0.11);">96.8</td>
+              <td>91.8</td>
+            </tr>
+            <tr>
+              <td>Freq Word Ext (FWE)</td>
+              <td style="background-color: rgba(225,65,105,0.62);">81.8</td>
+              <td style="background-color: rgba(225,65,105,0.90);">77.2</td>
+              <td style="background-color: rgba(225,65,105,0.52);">83.3</td>
+              <td style="background-color: rgba(225,65,105,0.44);">84.7</td>
+              <td style="background-color: rgba(225,65,105,0.08);">90.5</td>
+              <td style="background-color: rgba(225,65,105,0.13);">89.7</td>
+              <td style="background-color: rgba(65,105,225,0.21);">95.3</td>
+              <td style="background-color: rgba(65,105,225,0.02);">92.3</td>
+              <td style="background-color: rgba(65,105,225,0.18);">94.7</td>
+              <td style="background-color: rgba(65,105,225,0.08);">93.2</td>
+              <td>91.9</td>
+            </tr>
+            <tr>
+              <td>QA (Hotpot)</td>
+              <td style="background-color: rgba(225,65,105,0.90);">41.6</td>
+              <td style="background-color: rgba(225,65,105,0.70);">46.6</td>
+              <td style="background-color: rgba(225,65,105,0.47);">52.2</td>
+              <td style="background-color: rgba(225,65,105,0.35);">55.4</td>
+              <td style="background-color: rgba(225,65,105,0.22);">58.6</td>
+              <td style="background-color: rgba(225,65,105,0.51);">51.2</td>
+              <td style="background-color: rgba(225,65,105,0.11);">61.2</td>
+              <td style="background-color: rgba(225,65,105,0.21);">58.8</td>
+              <td style="background-color: rgba(225,65,105,0.14);">60.6</td>
+              <td style="background-color: rgba(225,65,105,0.10);">61.4</td>
+              <td>64</td>
+            </tr>
+            <tr>
+              <td>QA (SQUAD)</td>
+              <td style="background-color: rgba(225,65,105,0.90);">57.1</td>
+              <td style="background-color: rgba(225,65,105,0.65);">62.9</td>
+              <td style="background-color: rgba(225,65,105,0.44);">67.8</td>
+              <td style="background-color: rgba(225,65,105,0.37);">69.3</td>
+              <td style="background-color: rgba(225,65,105,0.15);">74.3</td>
+              <td style="background-color: rgba(225,65,105,0.45);">67.6</td>
+              <td style="background-color: rgba(225,65,105,0.04);">76.9</td>
+              <td style="background-color: rgba(225,65,105,0.05);">76.8</td>
+              <td style="background-color: rgba(225,65,105,0.07);">76.2</td>
+              <td style="background-color: rgba(225,65,105,0.03);">77.1</td>
+              <td>77.9</td>
+            </tr>
+            <tr>
+              <td>Variable Tracking</td>
+              <td style="background-color: rgba(225,65,105,0.90);">22.4</td>
+              <td style="background-color: rgba(225,65,105,0.23);">78.7</td>
+              <td style="background-color: rgba(225,65,105,0.05);">94.1</td>
+              <td style="background-color: rgba(225,65,105,0.13);">87.6</td>
+              <td style="background-color: rgba(225,65,105,0.08);">91.5</td>
+              <td style="background-color: rgba(225,65,105,0.14);">86.6</td>
+              <td>98</td>
+              <td style="background-color: rgba(65,105,225,0.01);">99.4</td>
+              <td style="background-color: rgba(65,105,225,0.01);">99.2</td>
+              <td>98.6</td>
+              <td>98.3</td>
+            </tr>
+      
+            <!-- Section: Ethical Norm (Safety) -->
+            <tr class="section">
+              <td></td>
+              <td colspan="10"><strong>Ethical Norm (Safety)</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>HH-RLHF Risk ↓</td>
+              <td style="background-color: rgba(225,65,105,0.90);">70.8</td>
+              <td style="background-color: rgba(65,105,225,0.24);">53.6</td>
+              <td style="background-color: rgba(65,105,225,0.75);">45.8</td>
+              <td style="background-color: rgba(225,65,105,0.42);">63.6</td>
+              <td style="background-color: rgba(225,65,105,0.37);">62.8</td>
+              <td style="background-color: rgba(225,65,105,0.86);">70.2</td>
+              <td style="background-color: rgba(225,65,105,0.77);">68.8</td>
+              <td style="background-color: rgba(225,65,105,0.57);">65.8</td>
+              <td style="background-color: rgba(225,65,105,0.57);">65.8</td>
+              <td style="background-color: rgba(225,65,105,0.30);">61.8</td>
+              <td>57.2</td>
+            </tr>
+            <tr>
+              <td>AdvBench Risk ↓</td>
+              <td style="background-color: rgba(225,65,105,0.82);">88.8</td>
+              <td style="background-color: rgba(225,65,105,0.81);">88.6</td>
+              <td style="background-color: rgba(225,65,105,0.56);">80.2</td>
+              <td style="background-color: rgba(225,65,105,0.90);">91.6</td>
+              <td style="background-color: rgba(225,65,105,0.48);">77.6</td>
+              <td style="background-color: rgba(225,65,105,0.69);">84.4</td>
+              <td style="background-color: rgba(225,65,105,0.85);">89.8</td>
+              <td style="background-color: rgba(225,65,105,0.84);">89.6</td>
+              <td style="background-color: rgba(225,65,105,0.72);">85.4</td>
+              <td style="background-color: rgba(225,65,105,0.67);">83.8</td>
+              <td>61.4</td>
+            </tr>
+      
+            <!-- Section: Personality (TRAIT) -->
+            <tr class="section">
+              <td></td>
+              <td colspan="10"><strong>Personality (TRAIT)</strong></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Narcissism ↓</td>
+              <td style="background-color: rgba(225,65,105,0.73);">47</td>
+              <td style="background-color: rgba(65,105,225,0.63);">21.8</td>
+              <td style="background-color: rgba(65,105,225,0.20);">29.9</td>
+              <td style="background-color: rgba(65,105,225,0.58);">22.8</td>
+              <td style="background-color: rgba(65,105,225,0.79);">18.9</td>
+              <td style="background-color: rgba(65,105,225,0.68);">20.9</td>
+              <td style="background-color: rgba(65,105,225,0.87);">17.4</td>
+              <td style="background-color: rgba(65,105,225,0.90);">16.9</td>
+              <td style="background-color: rgba(65,105,225,0.53);">23.7</td>
+              <td style="background-color: rgba(65,105,225,0.50);">24.2</td>
+              <td>33.5</td>
+            </tr>
+            <tr>
+              <td>Agreeableness</td>
+              <td style="background-color: rgba(225,65,105,0.90);">64.3</td>
+              <td style="background-color: rgba(225,65,105,0.61);">67.9</td>
+              <td style="background-color: rgba(225,65,105,0.33);">71.4</td>
+              <td style="background-color: rgba(225,65,105,0.57);">68.5</td>
+              <td style="background-color: rgba(225,65,105,0.21);">73</td>
+              <td style="background-color: rgba(65,105,225,0.51);">82</td>
+              <td style="background-color: rgba(225,65,105,0.11);">74.2</td>
+              <td style="background-color: rgba(225,65,105,0.45);">69.9</td>
+              <td style="background-color: rgba(225,65,105,0.32);">71.6</td>
+              <td style="background-color: rgba(225,65,105,0.40);">70.6</td>
+              <td>75.6</td>
+            </tr>
+            <tr>
+              <td>Psychopathy ↓</td>
+              <td style="background-color: rgba(225,65,105,0.90);">75.7</td>
+              <td style="background-color: rgba(225,65,105,0.66);">55.8</td>
+              <td style="background-color: rgba(225,65,105,0.67);">57.2</td>
+              <td style="background-color: rgba(225,65,105,0.34);">30</td>
+              <td style="background-color: rgba(225,65,105,0.38);">33.5</td>
+              <td style="background-color: rgba(225,65,105,0.54);">46.1</td>
+              <td style="background-color: rgba(225,65,105,0.09);">9.3</td>
+              <td style="background-color: rgba(225,65,105,0.26);">23.5</td>
+              <td style="background-color: rgba(225,65,105,0.31);">27.3</td>
+              <td style="background-color: rgba(225,65,105,0.29);">25.8</td>
+              <td>2.2</td>
+            </tr>
+            <tr>
+              <td>Machiavellianism ↓</td>
+              <td style="background-color: rgba(225,65,105,0.89);">33</td>
+              <td style="background-color: rgba(225,65,105,0.75);">30.6</td>
+              <td style="background-color: rgba(225,65,105,0.82);">31.8</td>
+              <td style="background-color: rgba(225,65,105,0.54);">27</td>
+              <td style="background-color: rgba(225,65,105,0.47);">25.8</td>
+              <td style="background-color: rgba(225,65,105,0.49);">26.1</td>
+              <td style="background-color: rgba(225,65,105,0.29);">22.7</td>
+              <td style="background-color: rgba(225,65,105,0.14);">20.2</td>
+              <td style="background-color: rgba(225,65,105,0.90);">33.1</td>
+              <td style="background-color: rgba(225,65,105,0.63);">28.5</td>
+              <td>17.8</td>
+            </tr>
+            <tr>
+              <td>Neuroticism ↓</td>
+              <td style="background-color: rgba(65,105,225,0.25);">28.7</td>
+              <td style="background-color: rgba(65,105,225,0.50);">23.8</td>
+              <td style="background-color: rgba(65,105,225,0.56);">22.7</td>
+              <td style="background-color: rgba(65,105,225,0.52);">23.3</td>
+              <td style="background-color: rgba(65,105,225,0.90);">16</td>
+              <td style="background-color: rgba(65,105,225,0.59);">22</td>
+              <td style="background-color: rgba(65,105,225,0.51);">23.5</td>
+              <td style="background-color: rgba(65,105,225,0.64);">21.1</td>
+              <td style="background-color: rgba(65,105,225,0.12);">31.1</td>
+              <td style="background-color: rgba(65,105,225,0.37);">26.4</td>
+              <td>33.5</td>
+            </tr>
+            <tr>
+              <td>Conscientiousness</td>
+              <td style="background-color: rgba(65,105,225,0.13);">89.8</td>
+              <td style="background-color: rgba(225,65,105,0.13);">88.6</td>
+              <td style="background-color: rgba(65,105,225,0.11);">89.7</td>
+              <td style="background-color: rgba(225,65,105,0.70);">86</td>
+              <td style="background-color: rgba(225,65,105,0.90);">85.1</td>
+              <td style="background-color: rgba(225,65,105,0.09);">88.8</td>
+              <td style="background-color: rgba(65,105,225,0.35);">90.8</td>
+              <td style="background-color: rgba(225,65,105,0.77);">85.7</td>
+              <td style="background-color: rgba(225,65,105,0.46);">87.1</td>
+              <td style="background-color: rgba(225,65,105,0.37);">87.5</td>
+              <td>89.2</td>
+            </tr>
+            <tr>
+              <td>Openness</td>
+              <td style="background-color: rgba(65,105,225,0.77);">70.1</td>
+              <td style="background-color: rgba(65,105,225,0.88);">72.8</td>
+              <td style="background-color: rgba(65,105,225,0.66);">67.6</td>
+              <td style="background-color: rgba(65,105,225,0.05);">53.7</td>
+              <td style="background-color: rgba(65,105,225,0.50);">63.9</td>
+              <td style="background-color: rgba(65,105,225,0.90);">73.2</td>
+              <td style="background-color: rgba(65,105,225,0.29);">59.1</td>
+              <td style="background-color: rgba(65,105,225,0.13);">55.6</td>
+              <td style="background-color: rgba(65,105,225,0.30);">59.4</td>
+              <td style="background-color: rgba(65,105,225,0.17);">56.5</td>
+              <td>52.5</td>
+            </tr>
+            <tr>
+              <td>Extraversion</td>
+              <td style="background-color: rgba(65,105,225,0.90);">54.1</td>
+              <td style="background-color: rgba(65,105,225,0.45);">40.1</td>
+              <td style="background-color: rgba(65,105,225,0.60);">44.9</td>
+              <td style="background-color: rgba(65,105,225,0.43);">39.5</td>
+              <td style="background-color: rgba(65,105,225,0.72);">48.7</td>
+              <td style="background-color: rgba(65,105,225,0.65);">46.4</td>
+              <td style="background-color: rgba(65,105,225,0.37);">37.9</td>
+              <td style="background-color: rgba(65,105,225,0.40);">38.6</td>
+              <td style="background-color: rgba(65,105,225,0.47);">40.8</td>
+              <td style="background-color: rgba(65,105,225,0.44);">40</td>
+              <td>26.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <style>
+        .table-wrap {
+          max-width: 100%;
+          overflow-x: auto;
+          font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        }
+      
+        .caption {
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+          color: #333;
+        }
+      
+        .swatch {
+          display: inline-block;
+          width: 0.9em;
+          height: 0.9em;
+          border-radius: 3px;
+          vertical-align: -2px;
+          margin: 0 0.2em;
+          border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+      
+        table.compact {
+          border-collapse: collapse;
+          width: 100%;
+          font-size: 12px;
+        }
+      
+        table.compact thead th {
+          background: #fafafa;
+          position: sticky;
+          top: 0;
+          z-index: 1;
+        }
+      
+        table.compact th,
+        table.compact td {
+          padding: 6px 8px;
+          text-align: center;
+          border: 1px solid #e6e6e6;
+          white-space: nowrap;
+        }
+      
+        table.compact td:first-child,
+        table.compact th:first-child {
+          text-align: left;
+        }
+      
+        tr.section td {
+          background: #f5f7ff;
+          font-size: 12px;
+        }
+      
+        .striped tbody tr:nth-child(odd):not(.section) td:first-child {
+          background: #fcfcfc;
+        }
+      </style>
+      </p>
+      
+      <p>
+      <strong>Dose-response of Junk Intervention on Llama3 8B Instruct.</strong>
+      To understand how junk intervention changes LLMs gradually versus the control and base models, we vary the ratio of junk
+      data in the mixture with control data to test ``dose'' responses.
+      In the above Table, we summarize all benchmarks after training with different portions of junk or
+      control data: 100% (Junk), 80%, 50%, 20%, and 0% (Control).
+      We also include baseline models (before intervention). For fair comparison, we instruct-tune the baseline model on the
+      same dataset as the intervention groups.
+      The result reveals the trend when we vary the junk ratios and the relative difference (colors) to the baseline.
+      </p>  
+      
+      <p>
+      <strong>Impacts of Continual Pre-training.</strong>
+      Compared to baselines, the controlled continual pre-training already causes some change in the models.
+      Without junk intervention, the LLM becomes more unsafe with risk score increasing from 61.4 to 77.6 (M1) or 83.8 (M2).
+      The impacts on personalities are non-trivial but inconsistent.
+      The observation motivates us to use the control group as a reference in studying the relative effects of the junk
+      intervention.</p>
+
+      <p>
+        <!-- Takeaway Box -->
+        <div class="takeawaybox" role="note" aria-labelledby="takeawaybox-title">
+          <div class="takeawaybox-title" id="takeawaybox-title">Key Takeaways</div>
+          <div class="takeawaybox-body">
+            <ul class="takeaway-list">
+              <li>Junk intervention has non-trivial effects, namely <em>Brain Rot</em>, on degrading reasoning, long-context
+                understanding/retrieval, and safety, and changing personalities (either bad or good).</li>
+              <li>M1 (engagement) intervention presents distinct effects (particularly in safety and personalities) versus M2
+                (quality) intervention, reflecting their inherent differences.</li>
+              <li>In dose-response testing, M1 engagement intervention demonstrates more significant and progressive impacts on
+                reasoning and long-context capabilities than M2 intervention.</li>
+            </ul>
+          </div>
+        </div>
+        
+        <style>
+          /* Styling to match LaTeX tcolorbox with visible bullets */
+          .takeawaybox {
+            --tb-back: #f7f7f7;
+            /* gray!5!white */
+            --tb-frame: #3f3f3f;
+            /* gray!75!black */
+            --tb-title: #2b2b2b;
+        
+            border: 1px solid var(--tb-frame);
+            background: var(--tb-back);
+            border-radius: 6px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, .08);
+            padding: 4px;
+            margin: 1em 0;
+          }
+        
+          .takeawaybox-title {
+            font-weight: 600;
+            color: var(--tb-title);
+            background: rgba(63, 63, 63, 0.05);
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(0, 0, 0, .08);
+          }
+        
+          .takeawaybox-body {
+            padding: 6px 12px;
+          }
+        
+          .takeaway-list {
+            list-style-type: disc;
+            /* ensures bullet points appear */
+            margin: 0.25rem 0 0.25rem 1.2rem;
+            /* left margin ~0.15in */
+            padding-left: 1rem;
+          }
+        
+          .takeaway-list li {
+            margin: 0.4rem 0;
+            line-height: 1.4;
+          }
+        </style>
+      </p>
     </div>
   </div>
+
+  
+
 </section>
 
 
