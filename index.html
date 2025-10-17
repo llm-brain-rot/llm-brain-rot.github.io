@@ -102,9 +102,8 @@
               <span class="author-block"><sup>2</sup>University of Texas at Austin,</span>
               <span class="author-block"><sup>3</sup>Purdue University</span>
               <br>
-              <span class="eql-cntrb"><small><br><sup>†</sup>Lead authors with equal contributions. <sup>‡</sup>Core contributors.</small></span>
-              <br>
-              <small>* Correspondence to <a href="mailto:jyhong@utexas.edu">jyhong@utexas.edu</a>, <a href="mailto:atlaswang@utexas.edu">atlaswang@utexas.edu</a>.</small>
+              <span class="eql-cntrb"><small><br><sup>†</sup>Lead authors with equal contributions. <sup>‡</sup>Core contributors. <br><span>*</span>Correspondence to <a href="mailto:jyhong@utexas.edu">jyhong@utexas.edu</a>, <a
+                href="mailto:atlaswang@utexas.edu">atlaswang@utexas.edu</a>.</small></span>
             </div>
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -161,7 +160,7 @@
         <img src="./static/images/teaser.png" alt="Teaser Image" style="display: block; margin: 0 auto; max-width: 100%;">
         <h2 class="subtitle has-text-centered">
           Outline of our work: (i) Inspired by the concept of Brain Rot, we establish the hypothesis of LLM Brain Rot; (ii) We
-          construct junk and control data from Twitter/X posts for intervention; (iii)~We benchmark four different cognitive
+          construct junk and control data from Twitter/X posts for intervention; (iii) We benchmark four different cognitive
           functions of the intervened LLMs;
           (iv) We analyze the results to identify the failure modes caused by the brain rot; and (v) Brain rot is persistent after
           various mitigation.
@@ -743,9 +742,39 @@
       <p>In dose-response testing, M1 engagement intervention demonstrates more significant and progressive impacts on reasoning and long-context capabilities than M2 intervention.</p>
     </div>
   </div>
+</section>
 
-  
 
+<section>
+  <div class="container is-max-desktop">
+    <div class="container content">
+      <h2 class="title is-3">Brain Rot Disrupt Thinking</h2>
+
+      <div style="text-align:center;">
+        <img src="./static/images/failure_mode_barplot_count.png" alt="Figure: thought skipping."
+          style="display:inline-block; max-width:100%; height:auto;">
+      </div>
+
+      <p>We analyze the reasoning failures in ARC-Challenge to identify different failure modes. We find that the majority failures can be attributed to "thought skipping" (e.g., the model fails to generate intermediate reasoning steps), which significantly increases in models affected by brain rot.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="container is-max-desktop">
+    <div class="container content">
+      <h2 class="title is-3">Brain Rot is Persistent Against Mitigations</h2>
+      
+      <div style="text-align:center;">
+        <img src="./static/images/wash_out_scaling.png" alt="Figure: Scale wash-out tuning." style="display:inline-block; max-width:100%; height:auto;">
+      </div>
+
+      <p>Our findings indicate that the cognitive decline associated with brain rot is not easily mitigated by standard fine-tuning techniques. Even after extensive instruction tuning (IT) or post-doc continual pre-training on high-quality control data, the models exhibit lingering effects of the junk data they were initially exposed to.</p>
+
+    </div>
+  </div>
 </section>
 
 
