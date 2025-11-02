@@ -9,6 +9,7 @@ body {
   background-color: #4158D0; */
   background-image: -webkit-linear-gradient(135deg, #00DBDE 0%, #FC00FF 100%);
 
+  background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -141,6 +142,92 @@ body {
 
 .eql-cntrb { 
   font-size: smaller;
+}
+
+
+
+/* ---- Reasoning visualization (screenshot replica) ---- */
+.question-card {
+  position: relative;
+  background: #fff;
+  border: 2px solid #cfd3d7;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.question-card .question-label {
+  position: absolute;
+  top: -0.9rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #d9d9de;
+  color: #2f2f2f;
+  font-weight: 700;
+  padding: 0.15rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid #bdbfc4;
+}
+
+.reasoning-box {
+  position: relative;
+  background: #fff;
+  border-radius: 14px;
+  padding: 1.1rem 1rem 1.25rem 1rem;
+  border: 3px solid transparent;
+}
+
+.reasoning-box .box-label {
+  position: absolute;
+  top: -1.05rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-weight: 800;
+  font-size: 1rem;
+  padding: 0.2rem 1.1rem;
+  border-radius: 999px;
+  border: 2px solid transparent;
+}
+
+/* Baseline (green) */
+.reasoning-box.is-baseline {
+  border-color: #2e7d32; /* deep green */
+}
+.reasoning-box.is-baseline .box-label {
+  background: #cfe9cf;
+  color: #1d4f20;
+  border-color: #2e7d32;
+}
+
+/* Junk (red) */
+.reasoning-box.is-junk {
+  border-color: #c0392b; /* red */
+}
+.reasoning-box.is-junk .box-label {
+  background: #f3c3c0;
+  color: #5b1d18;
+  border-color: #c0392b;
+}
+
+/* Highlight blocks */
+.hl {
+  display: block;
+  padding: 0.15rem 0.25rem;
+  border-radius: 3px;
+  margin-bottom: 0.4rem;
+}
+.hl-green { background: rgba(120, 200, 120, 0.45); }
+.hl-red { background: rgba(220, 120, 120, 0.45); }
+
+/* Callouts */
+.callout.wrong-logic {
+  display: inline-block;
+  background: #f2f2f2;
+  color: #8b0000;
+  font-weight: 900;
+  font-size: 1.1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  border-left: 6px solid #8b0000;
 }
 
 
